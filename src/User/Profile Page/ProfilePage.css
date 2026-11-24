@@ -1,0 +1,136 @@
+.profile-card {
+  max-width: 760px;
+  padding: 24px;
+  border: 1px solid #f0ebf0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(67, 51, 72, 0.035);
+}
+
+.profile-form {
+  display: grid;
+  gap: 20px;
+}
+
+.profile-field {
+  display: grid;
+  gap: 7px;
+}
+
+.profile-field label {
+  color: #817783;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.profile-field input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #e9e3eb;
+  border-radius: 9px;
+  color: #514654;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+}
+
+.profile-field input:focus {
+  border-color: #559677;
+  outline: 2px solid rgba(85, 150, 119, 0.15);
+}
+
+.profile-field input[readonly] {
+  color: #817783;
+  background: #fbfafc;
+}
+
+.profile-field p {
+  margin: 0;
+  color: #9c909d;
+  font-size: 11px;
+}
+
+.profile-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid #f0ebf0;
+  border-bottom: 1px solid #f0ebf0;
+  color: #817783;
+  font-size: 12px;
+}
+
+.profile-detail strong {
+  color: #514654;
+  font-weight: 800;
+}
+
+.profile-message {
+  margin: 0;
+  font-size: 12px;
+}
+
+.profile-message.error {
+  color: #b65f68;
+}
+
+.profile-message.success {
+  color: #4c8f70;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.profile-save,
+.profile-cancel {
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.profile-save {
+  color: #fff;
+  background: #559677;
+}
+
+.profile-save:hover:not(:disabled) {
+  background: #447f62;
+}
+
+.profile-cancel {
+  border-color: #e9e3eb;
+  color: #817783;
+  background: #fff;
+}
+
+.profile-save:disabled,
+.profile-cancel:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.profile-logout {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+@media (max-width: 720px) {
+  .profile-card {
+    padding: 20px 16px;
+  }
+}

@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read: if request.auth != null
+        && request.auth.uid == userId;
+      allow create, update: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly(['name', 'email', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.email is string
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.createdAt is timestamp;
+
+      match /transactions/{transactionId} {
+        allow read: if request.auth != null
+          && request.auth.uid == userId;
+        allow create, update: if request.auth != null
+          && request.auth.uid == userId
+          && request.resource.data.keys().hasOnly(['date', 'transaction', 'category', 'amount', 'createdAt'])
+          && request.resource.data.keys().hasAll(['date', 'transaction', 'category', 'amount', 'createdAt'])
+          && request.resource.data.date is string
+          && request.resource.data.date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+          && request.resource.data.transaction is string
+          && request.resource.data.transaction.size() > 0
+          && request.resource.data.transaction.size() <= 120
+          && request.resource.data.category is string
+          && request.resource.data.category.size() > 0
+          && request.resource.data.category.size() <= 60
+          && request.resource.data.amount is number
+          && request.resource.data.amount != 0
+          && request.resource.data.createdAt is timestamp;
+        allow delete: if request.auth != null
+          && request.auth.uid == userId;
+      }
+    }
+  }
+}
